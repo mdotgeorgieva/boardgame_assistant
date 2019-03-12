@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Bootstrap link -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Boardgame assistant</title>
+
+</head>
+<body>
+
+	<!-- Header -->
+
+	<header>
+		<div class="container navigation">
+			<div class="navbar">
+				<a class="nav-link" href="#">Начало</a>
+				<a class="nav-link" href="#">Имам нужда от зар</a>
+				<a class="nav-link" href="#">Камък-ножица-хартия</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- Text -->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Images -->
+
+	<section>
+		<div class="container">
+			<div class="row images">
+				<div class="col-6">
+					<img class="img" src="Dice.png">
+				</div>
+				<div class="col-6">
+					<img class="img" src="rockpaperscissors.png">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Dice -->
+
+	<section>
+		<div class="container">
+
+			<div class="row">
+				<div class="col-12">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</div>
+			</div>
+
+			<!--Type-->
+			
+			<div class="row">
+				<div class="col-6">
+					<p> Изберете вида на зара, от който имате нужда: </p>
+				</div>
+				<div class="col-4">
+					<select id="diceType">
+						<option class="typeOfDie" value="4">Четиристенен</option>
+						<option class="typeOfDie" value="6">Шестстенен</option>
+						<option class="typeOfDie" value="8">Осемстенен</option>
+						<option class="typeOfDie" value="10">Десетстенен</option>
+						<option class="typeOfDie" value="12">Дванадесетстенен</option>
+						<option class="typeOfDie" value="14">Четиринадесетстенен</option>
+						<option class="typeOfDie" value="16">Шестнадесетстенен</option>
+						<option class="typeOfDie" value="18">Осемнадесетстенен</option>
+						<option class="typeOfDie" value="20">Двадесетстенен</option>
+					</select>
+				</div>
+			</div>
+		
+			<!--Number-->
+
+			<div class="row">
+				<div class="col-6">
+					<p> Изберете броя на заровете, от които имате нужда:  </p>
+				</div>	
+				<div class="col-4">
+					<select id="diceNumber">
+						<option class="numberOfDice" value = "1">1</option>
+						<option class="numberOfDice" value = "2">2</option>
+						<option class="numberOfDice" value = "3">3</option>
+						<option class="numberOfDice" value = "4">4</option>
+						<option class="numberOfDice" value = "5">5</option>
+						<option class="numberOfDice" value = "6">6</option>
+					</select>
+				</div>
+				<div class="col-2">
+					<button id="choose">Избери</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Display results -->
+
+		<div class="container">
+			<div class="row">
+				<div class="col-12 displayResults">
+					
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</div>
+
+			</div>
+
+			<!-- Number of players-->
+
+			<div class="row">
+				<div class="col-6">
+					<p>Изберете броя на участниците: </p>
+				</div>
+				<div class="col-4">
+					<select id="rpsNumber">
+						<option class="numberOfPlayers" value="1">1</option>
+						<option class="numberOfPlayers" value="2">2</option>
+						<option class="numberOfPlayers" value="3">3</option>
+						<option class="numberOfPlayers" value="4">4</option>
+						<option class="numberOfPlayers" value="5">5</option>
+						<option class="numberOfPlayers" value="6">6</option>
+					</select>
+				</div>
+				<div class="col-2">
+					<button id="rpsChoose">Избери</button>
+				</div>
+			</div>
+			<!-- Name of players -->
+
+			<div class="row">
+				<div class="col-12" id="rspNames"></div>	
+			</div>
+		</div>
+	</section>
+
+	<script type="text/javascript" src="dice.js"></script>
+	<script type="text/javascript" src="rockpaperscisors.js"></script>
+</body>
+</html>

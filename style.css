@@ -1,0 +1,21 @@
+/*{
+	border: 1px solid red;
+}*/
+
+.navigation{
+	 background: radial-gradient(ellipse closest-side, #f2d9e6, #ffffff);
+}
+
+.text {
+	padding-top: 5em;	
+}
+
+.img {
+	position: relative;
+	width: 100%;
+	padding: 5em 2em 5em 2em;
+}
+
+.playerName{
+	margin: 1em;
+}

@@ -40,7 +40,7 @@ let addInput = function() {
 	addName.appendChild(submitName);
 }
 
-//Remove unput fields
+//Remove input fields
 
 let removeInput = function(){
 	while(elements.length > 0){
@@ -61,6 +61,71 @@ function rpsRandomizer(){
 	for(let i = 0; i<rpsSavedNumber; i++){
 		random();
 	}
+}
+
+//Get pic
+
+function rpsPic(arr, y, z){
+	let x = document.createElement("img")
+		if(arr[z] == 1){
+			x.setAttribute("src", "rock.png");
+			document.getElementById(y).appendChild(x);
+		}
+		else if(arr[z] == 2){
+			x.setAttribute("src", "paper.png");
+			document.getElementById(y).appendChild(x); 
+		}
+		else{
+			x.setAttribute("src", "scissors.png");
+			document.getElementById(y).appendChild(x);
+		}
+}
+
+//Create divs
+
+let addDiv = function(x){
+	let newDiv = document.getElementById('rspResults');
+	let playerResult;
+	
+		playerResult = document.createElement("div");
+		playerResult.setAttribute("type", "text");
+		playerResult.setAttribute("name", "playerResult");
+		playerResult.setAttribute("class", "playerResult");
+		playerResult.setAttribute("id", "playerResult" + x);
+		newDiv.appendChild(playerResult);
+}
+
+//Logical operator
+
+let findWinner = function(){
+	while (rpsResults.length > 1){
+		if(rpsResults.includes(1) && rpsResults.includes(2) && rpsResults.includes(3)){
+			rpsResults= [];
+			rpsRandomizer();
+		} 
+
+		else{
+			let i = 0;
+			rpsResults.forEach(function(e){
+				e === 1? rpsResults.includes(3)? (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i)) 
+												: (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i), winnerList.push(nameList[i]))
+				:e ===2? rpsResults.includes(1)? (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i)) 
+												: (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i), winnerList.push(nameList[i])) 
+				:rpsResults.includes(2)? (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i))
+										 		: (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i), winnerList.push(nameList[i])) 
+				i++
+			})
+			nameList = winnerList;	
+		} 
+		if(winnerList.length === 1){
+			console.log(winnerList[0] + " печели")
+		}
+		rpsSavedNumber = nameList.length;
+		rpsResults= [];
+		winnerList = [];
+		rpsRandomizer();
+	}
+
 }
 
 //Onclick
@@ -88,29 +153,6 @@ rps.onclick = function(){
 		rpsRandomizer();
 
 		//logical operator
-		while (rpsResults.length > 1){
-			if(rpsResults.includes(1) && rpsResults.includes(2) && rpsResults.includes(3)){
-				rpsResults= [];
-				rpsRandomizer();
-			} 
-
-			else{
-				let i = 0;
-				rpsResults.forEach(function(e){
-					e === 1? rpsResults.includes(3)? console.log(nameList[i] + " губи") : winnerList.push(nameList[i]) 
-					:e ===2? rpsResults.includes(1)? console.log(nameList[i] + " губи") : winnerList.push(nameList[i]) 
-					:rpsResults.includes(2)? console.log(nameList[i] + " губи") : winnerList.push(nameList[i]) 
-					i++
-				})
-				nameList = winnerList;	
-			} 
-			if(winnerList.length === 1){
-				console.log(winnerList[0] + " печели")
-			}
-			rpsSavedNumber = nameList.length;
-			rpsResults= [];
-			winnerList = [];
-			rpsRandomizer();
-		}
+		findWinner();
 	}
-}
+} 

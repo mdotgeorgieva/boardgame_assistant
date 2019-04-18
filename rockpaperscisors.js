@@ -4,15 +4,18 @@ let rps = document.getElementById('rpsChoose');
 let rpsSavedNumber;
 let rpsResults = [];
 let playerName;
-let elements = document.getElementsByClassName('playerName');
+let inputs = document.getElementsByClassName('playerName');
+let playerResult;
+let displayResults= document.getElementById('rspResults');
 let nameList = [];
 let winnerList = [];
 let submitName;
 let savedName;
+let j = 1;
 
 //Save number of players
 
-let rpsNumber = function(){
+let rpsNumber = () => {
 	let rpsNumberValue = document.getElementById('rpsNumber').selectedIndex;
 	rpsSavedNumber =document.getElementsByClassName('numberOfPlayers')[rpsNumberValue].value;
 	return rpsSavedNumber;
@@ -20,7 +23,7 @@ let rpsNumber = function(){
 
 //Promtp for names
 
-let addInput = function() {
+let addInput = () => {
 	rpsNumber();
 	let addName = document.getElementById('rspNames');
 	for (let i = 0; i < rpsSavedNumber; i++){
@@ -32,7 +35,7 @@ let addInput = function() {
 		playerName.setAttribute("placeholder", "Име на участник")
 		addName.appendChild(playerName);
 	}
-
+ 
 	submitName = document.createElement("button");
 	submitName.setAttribute("id", "submitName");
 	let buttonText = document.createTextNode("Потвърди");
@@ -42,101 +45,93 @@ let addInput = function() {
 
 //Remove input fields
 
-let removeInput = function(){
-	while(elements.length > 0){
-		elements[0].parentNode.removeChild(elements[0]);
+let removeInput = () => {
+	while(inputs.length > 0){
+		inputs[0].parentNode.removeChild(inputs[0]);
 	}
 	submitName.remove();
 }
 
+
 // Randomizer
 
-let random= function(){
+let random = () => {
 	let randomNumber = Math.floor(Math.random() * (4-1) + 1)
 	rpsResults.push(randomNumber);
 	console.log(rpsResults);
 }
 
-function rpsRandomizer(){
-	for(let i = 0; i<rpsSavedNumber; i++){
+let rpsRandomizer = () => {
+	for(let i = 0; i < rpsSavedNumber; i++){
 		random();
 	}
 }
 
-//Get pic
-
-function rpsPic(arr, y, z){
-	let x = document.createElement("img")
-		if(arr[z] == 1){
-			x.setAttribute("src", "rock.png");
-			document.getElementById(y).appendChild(x);
-		}
-		else if(arr[z] == 2){
-			x.setAttribute("src", "paper.png");
-			document.getElementById(y).appendChild(x); 
-		}
-		else{
-			x.setAttribute("src", "scissors.png");
-			document.getElementById(y).appendChild(x);
-		}
-}
-
-//Create divs
-
-let addDiv = function(x){
-	let newDiv = document.getElementById('rspResults');
-	let playerResult;
-	
-		playerResult = document.createElement("div");
-		playerResult.setAttribute("type", "text");
-		playerResult.setAttribute("name", "playerResult");
-		playerResult.setAttribute("class", "playerResult");
-		playerResult.setAttribute("id", "playerResult" + x);
-		newDiv.appendChild(playerResult);
+let printResult = (x) => {
+	playerResult = document.createElement("p");
+	playerResult.setAttribute("class", "playerResults")
+	if (rpsResults[x] === 1){
+		playerResult.innerHTML = nameList[x] + " избра камък";
+		displayResults.appendChild(playerResult);
+	}else if (rpsResults[x] === 2){
+		playerResult.innerHTML = nameList[x] + " избра ножица";
+		displayResults.appendChild(playerResult);
+	}else {
+		playerResult.innerHTML = nameList[x] +  " избра хартия";
+		displayResults.appendChild(playerResult);
+	}
 }
 
 //Logical operator
 
-let findWinner = function(){
+let findWinner = () => {
 	while (rpsResults.length > 1){
+		displayResults.append(document.createTextNode("Рунд " + j))
+
 		if(rpsResults.includes(1) && rpsResults.includes(2) && rpsResults.includes(3)){
+			for (let i = 0; i < rpsSavedNumber; i++){
+				printResult(i);
+			}
 			rpsResults= [];
-			rpsRandomizer();
-		} 
+			j++
+		}
 
 		else{
 			let i = 0;
 			rpsResults.forEach(function(e){
-				e === 1? rpsResults.includes(3)? (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i)) 
-												: (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i), winnerList.push(nameList[i]))
-				:e ===2? rpsResults.includes(1)? (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i)) 
-												: (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i), winnerList.push(nameList[i])) 
-				:rpsResults.includes(2)? (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i))
-										 		: (addDiv(i), rpsPic(rpsResults, "playerResult" + i, i), winnerList.push(nameList[i])) 
+				e === 1? rpsResults.includes(3)? printResult(i)
+												: (printResult(i), winnerList.push(nameList[i])) 
+				:e ===2? rpsResults.includes(1)? printResult(i) 
+												: (printResult(i), winnerList.push(nameList[i])) 
+				:rpsResults.includes(2)? printResult(i) 
+												: (printResult(i), winnerList.push(nameList[i])) 
 				i++
 			})
-			nameList = winnerList;	
+			nameList = winnerList;
+			j++	
 		} 
 		if(winnerList.length === 1){
 			console.log(winnerList[0] + " печели")
+			displayResults.append(document.createTextNode(winnerList[0] + " печели"));
 		}
 		rpsSavedNumber = nameList.length;
 		rpsResults= [];
 		winnerList = [];
-		rpsRandomizer();
+		rpsRandomizer(); 
 	}
-
 }
 
 //Onclick
 
-rps.onclick = function(){
+rps.onclick = () => {
 	rpsNumber();
-	if(elements.length>0){
+	if(inputs.length>0){
 		removeInput();
 		addInput();
 	}
+
 	else{
+		
 		addInput();
 	}
 
@@ -154,5 +149,7 @@ rps.onclick = function(){
 
 		//logical operator
 		findWinner();
+
+	
 	}
 } 

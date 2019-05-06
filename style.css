@@ -19,3 +19,9 @@
 .playerName{
 	margin: 1em;
 }
+
+[id^='playerResult'] img {
+    width:  100px;
+    max-width: 100%;
+    height: auto;
+}

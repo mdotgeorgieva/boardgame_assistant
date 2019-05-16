@@ -43,36 +43,36 @@ let diceDivs = (x) => {
 
 let dicePrintResults = (x) =>{
 	let dicePlayerResult = document.createElement('img');
-	dicePlayerResult.setAttribute('class', 'diceImage')
+	dicePlayerResult.setAttribute('class', 'diceResult')
 	let y = document.getElementById('diceResult' + x)
 	switch(diceResults[x]){
 		case 1:
-		dicePlayerResult.setAttribute('src', 'images/dice/one.svg');
+		dicePlayerResult.setAttribute('src', 'images/dice/one.gif');
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 2:
-		dicePlayerResult.setAttribute('src', 'images/dice/two.svg');
+		dicePlayerResult.setAttribute('src', 'images/dice/two.gif');
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 3:
-		dicePlayerResult.setAttribute('src', 'images/dice/three.svg');
+		dicePlayerResult.setAttribute('src', 'images/dice/three.gif');
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 4:
-		dicePlayerResult.setAttribute('src', 'images/dice/four.svg');
+		dicePlayerResult.setAttribute('src', 'images/dice/four.gif');
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 5:
-		dicePlayerResult.setAttribute('src', 'images/dice/five.svg');
+		dicePlayerResult.setAttribute('src', 'images/dice/five.gif');
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 6:
-		dicePlayerResult.setAttribute('src', 'images/dice/six.svg');
+		dicePlayerResult.setAttribute('src', 'images/dice/six.gif');
 		y.appendChild(dicePlayerResult);
 		break;
 	}
@@ -81,6 +81,11 @@ let dicePrintResults = (x) =>{
 //Onclick
 
 rollDice.onclick = function() {
+	
+	while(diceDisplayResults.firstChild){
+		diceDisplayResults.removeChild(diceDisplayResults.firstChild);
+	}
+
 	chooseNumber();
 	chooseType();
 	for(let i = 0; i < savedNumber; i++){

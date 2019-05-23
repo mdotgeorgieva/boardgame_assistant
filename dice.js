@@ -5,6 +5,7 @@ let savedNumber;
 const rollDice = document.getElementById('choose');
 let diceResults = [];
 const diceDisplayResults = document.getElementById('diceResults');
+let dicePlayerResult;
 
 //Save number of dice
 
@@ -42,37 +43,37 @@ let diceDivs = (x) => {
 }
 
 let dicePrintResults = (x) =>{
-	let dicePlayerResult = document.createElement('img');
+	dicePlayerResult = document.createElement('img');
 	dicePlayerResult.setAttribute('class', 'diceResult')
 	let y = document.getElementById('diceResult' + x)
 	switch(diceResults[x]){
 		case 1:
-		dicePlayerResult.setAttribute('src', 'images/dice/one.gif');
+		dicePlayerResult.setAttribute('src', 'images/dice/one.gif' +"?a="+Math.random());
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 2:
-		dicePlayerResult.setAttribute('src', 'images/dice/two.gif');
+		dicePlayerResult.setAttribute('src', 'images/dice/two.gif' +"?a="+Math.random());
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 3:
-		dicePlayerResult.setAttribute('src', 'images/dice/three.gif');
+		dicePlayerResult.setAttribute('src', 'images/dice/three.gif' +"?a="+Math.random());
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 4:
-		dicePlayerResult.setAttribute('src', 'images/dice/four.gif');
+		dicePlayerResult.setAttribute('src', 'images/dice/four.gif' +"?a="+Math.random());
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 5:
-		dicePlayerResult.setAttribute('src', 'images/dice/five.gif');
+		dicePlayerResult.setAttribute('src', 'images/dice/five.gif' +"?a="+Math.random());
 		y.appendChild(dicePlayerResult);
 		break;
 
 		case 6:
-		dicePlayerResult.setAttribute('src', 'images/dice/six.gif');
+		dicePlayerResult.setAttribute('src', 'images/dice/six.gif' +"?a="+Math.random());
 		y.appendChild(dicePlayerResult);
 		break;
 	}
@@ -81,6 +82,7 @@ let dicePrintResults = (x) =>{
 //Onclick
 
 rollDice.onclick = function() {
+
 	
 	while(diceDisplayResults.firstChild){
 		diceDisplayResults.removeChild(diceDisplayResults.firstChild);

@@ -28,7 +28,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<p class="text">Здравей, другарче! Подозирам, че знам какво те води насам :)
+						Най-вероятно имаш нужда от виртуален помощник в генерирането на произволен зар
+						или пък с твоите приятели имате нужда да разпределите местата си по един независим,
+						непредубеден начин. Ако това е случаят, значи си на правилното място. По-надолу се намират
+						картинките на генераторите, с които разполагаме в момента. Един клик върху желания избор е достатъчен!
+					</p>
 				</div>
 			</div>
 		</div>
@@ -40,10 +45,14 @@
 		<div class="container">
 			<div class="row images">
 				<div class="col-6">
-					<img class="img" src="images/welcome_page/DICE.PNG">
+					<a id="diceImg" href="#diceSection">
+						<img class="img" src="images/welcome_page/DICE.PNG">
+					</a>
 				</div>
 				<div class="col-6">
-					<img class="img" src="images/welcome_page/rockpaperscissors.png">
+					<a id = "rpsImg" href="#rpsSection">
+						<img class="img" src="images/welcome_page/rockpaperscissors.png">
+					</a>
 				</div>
 			</div>
 		</div>
@@ -51,12 +60,14 @@
 
 	<!-- Dice -->
 
-	<section>
+	<section id = "diceSection" class="hidden">
 		<div class="container">
 
 			<div class="row">
 				<div class="col-12">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<p>Добре дошъл в този лесен за употреба зар генератор. Тук нещата са доста прости - избери вида
+						и броя на заровете от падащото меню и един клик на бутона "Избери" ще направи останалото!
+					</p>
 				</div>
 			</div>
 
@@ -64,7 +75,7 @@
 			
 			<div class="row">
 				<div class="col-6">
-					<p> Изберете вида на зара, от който имате нужда: </p>
+					<p> Избери вида на зара, от който имаш нужда: </p>
 				</div>
 				<div class="col-4">
 					<select id="diceType">
@@ -85,7 +96,7 @@
 
 			<div class="row">
 				<div class="col-6">
-					<p> Изберете броя на заровете, от които имате нужда:  </p>
+					<p> Избери броя на заровете, от които имаш нужда:  </p>
 				</div>	
 				<div class="col-4">
 					<select id="diceNumber">
@@ -116,11 +127,16 @@
 
 	<!--Rock-Paper-Scissors-->
 	
-	<section>
+	<section id="rpsSection" class="hidden">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<p>Добре дошъл в този Камък-ножица-хартия симулатор. Неговото създаване беше вдъхновено от 
+						действителна нужда и функциите му отразяват стандартните фази на играта. Избери броя на играчите
+						и въведи имената им. Натисни "Започни игра", за да определите победителя в първия рунд, а ако сте
+						повече - не се тревожете, натискайте "Продължи" и играта ще определи вашите места напълно честно,
+						без никакви психологически трикове!
+					</p>
 				</div>
 
 			</div>
@@ -133,7 +149,7 @@
 				</div>
 				<div class="col-4">
 					<select id="rpsNumber">
-						<option class="numberOfPlayers" value="1">1</option>
+						<!---<option class="numberOfPlayers" value="1">1</option>-->
 						<option class="numberOfPlayers" value="2">2</option>
 						<option class="numberOfPlayers" value="3">3</option>
 						<option class="numberOfPlayers" value="4">4</option>
@@ -161,7 +177,8 @@
 		</div>
 	</section>
 
+	<script type="text/javascript" src="welcome_page.js"></script>
 	<script type="text/javascript" src="dice.js"></script>
 	<script type="text/javascript" src="rockpaperscisors.js"></script>
-</body>
+	</body>
 </html>

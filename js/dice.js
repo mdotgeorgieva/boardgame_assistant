@@ -2,24 +2,24 @@
 
 let savedType;
 let savedNumber;
-const rollDice = document.getElementById('choose');
+const rollDice = document.getElementById('choose-dice');
 let diceResults = [];
-const diceDisplayResults = document.getElementById('diceResults');
+const diceDisplayResults = document.getElementById('dice-results');
 let dicePlayerResult;
 
 //Save number of dice
 
 let chooseNumber = function() {
-	let numberValue = document.getElementById('diceNumber').selectedIndex;
-	savedNumber = document.getElementsByClassName('numberOfDice')[numberValue].value;
+	let numberValue = document.getElementById('dice-number').selectedIndex;
+	savedNumber = document.getElementsByClassName('number-of-dice')[numberValue].value;
 	return savedNumber;
 }
 
 //Save type of die
 
 let chooseType = function() {
-	let typeValue = document.getElementById('diceType').selectedIndex;
-	savedType = document.getElementsByClassName('typeOfDie')[typeValue].value;
+	let typeValue = document.getElementById('dice-type').selectedIndex;
+	savedType = document.getElementsByClassName('type-of-die')[typeValue].value;
 	return savedType;
 }
 
@@ -37,15 +37,14 @@ let randomizer = function() {
 
 let diceDivs = (x) => {
 	let diceDiv = document.createElement('div');
-	diceDiv.setAttribute('id', 'diceResult' + x);
-	diceDiv.setAttribute('class', 'diceResult');
+	diceDiv.setAttribute('id', 'dice-result' + x);
+	diceDiv.setAttribute("class", "dice-div");
 	diceDisplayResults.appendChild(diceDiv);
 }
 
 let dicePrintResults = (x) =>{
 	dicePlayerResult = document.createElement('img');
-	dicePlayerResult.setAttribute('class', 'diceResult')
-	let y = document.getElementById('diceResult' + x)
+	let y = document.getElementById('dice-result' + x);
 	switch(diceResults[x]){
 		case 1:
 		dicePlayerResult.setAttribute('src', 'images/dice/one.gif' +"?a="+Math.random());

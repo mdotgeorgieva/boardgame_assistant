@@ -1,14 +1,14 @@
 //Variables
 
-const rps = document.getElementById('rpsChoose');
+const rps = document.getElementById('rps-choose');
 let rpsDynamicNumber;
 let rpsSavedNumber;
 let rpsResults = [];
 let playerName;
-const addName = document.getElementById('rspNames');
-const inputs = document.getElementsByClassName('playerName');
+const addName = document.getElementById('rsp-names');
+const inputs = document.getElementsByClassName('player-name');
 let playerResult;
-const displayResults= document.getElementById('rspResults');
+const displayResults= document.getElementById('rsp-results');
 let dynamicNameList = [];
 let nameList=[];
 let winnerList = [];
@@ -22,8 +22,8 @@ let losersArray;
 //Save number of players
 
 let rpsNumber = () => {
-	let rpsNumberValue = document.getElementById('rpsNumber').selectedIndex;
-	rpsDynamicNumber =document.getElementsByClassName('numberOfPlayers')[rpsNumberValue].value;
+	let rpsNumberValue = document.getElementById('rps-number').selectedIndex;
+	rpsDynamicNumber =document.getElementsByClassName('number-of-players')[rpsNumberValue].value;
 	rpsSavedNumber = rpsDynamicNumber;
 	return rpsDynamicNumber;
 }
@@ -35,21 +35,22 @@ let addInput = () => {
 	for (let i = 0; i < rpsDynamicNumber; i++){
 		playerName = document.createElement("input");
 		playerName.setAttribute("type", "text");
-		playerName.setAttribute("name", "playerName");
-		playerName.setAttribute("class", "playerName");
-		playerName.setAttribute("id", "playerName" + i);
+		playerName.setAttribute("name", "player-name");
+		playerName.setAttribute("class", "player-name");
+		playerName.setAttribute("id", "player-name" + i);
 		playerName.setAttribute("placeholder", "Име на участник");
+		playerName.setAttribute("value", "Играч " + (i + 1));
 		addName.appendChild(playerName);
 	}
  
 	submitName = document.createElement("button");
-	submitName.setAttribute("id", "submitName");
+	submitName.setAttribute("id", "submit-name");
 	let buttonText = document.createTextNode("Започни игра");
 	submitName.appendChild(buttonText);
 	addName.appendChild(submitName);
 
 	continueGame = document.createElement("button");
-	continueGame.setAttribute("id", "continueGame");
+	continueGame.setAttribute("id", "continue-game");
 	continueGame.setAttribute("class", "hidden");
 	let buttonTextContinue = document.createTextNode("Продължи");
 	continueGame.appendChild(buttonTextContinue);
@@ -80,18 +81,28 @@ let rpsRandomizer = (x) => {
 	}
 }
 
+let domBuilder = (textToAppend, divCLassX, divClassZ, divToAppendTo) => {
+	let x = document.createElement("div");
+	x.setAttribute("class", divCLassX)
+	let y = document.createElement("div");
+	y.append(textToAppend);
+	x.append(y);
+	let z = document.createElement("div");
+	z.setAttribute("class", divClassZ);
+	x.append(z);
+	divToAppendTo.append(x);
+}
+
 let printResult = (x) => {
-	playerResult = document.createElement("p");
-	playerResult.setAttribute("class", "playerResults")
+
 	if (rpsResults[x] === 1){
-		playerResult.innerHTML = dynamicNameList[x] + " избра камък";
-		displayResults.appendChild(playerResult);
-	}else if (rpsResults[x] === 2){
-		playerResult.innerHTML = dynamicNameList[x] + " избра ножица";
-		displayResults.appendChild(playerResult);
-	}else {
-		playerResult.innerHTML = dynamicNameList[x] +  " избра хартия";
-		displayResults.appendChild(playerResult);
+		domBuilder(dynamicNameList[x] + " избра ", "player-results", "rock", displayResults);
+	
+	} else if (rpsResults[x] === 2){
+		domBuilder(dynamicNameList[x] + " избра ", "player-results", "scissors", displayResults);
+		
+	} else {
+		domBuilder(dynamicNameList[x] + " избра ", "player-results", "paper", displayResults);
 	}
 }
 
@@ -99,7 +110,7 @@ let printWinners = (arr) => {
 	let rpsPlaces;
 	arr.forEach((e) => {
 		rpsPlaces = document.createElement('p');
-		rpsPlaces.setAttribute('class', 'rpsPlaces');
+		rpsPlaces.setAttribute('class', 'rps-places');
 		displayResults.appendChild(rpsPlaces);
 		rpsPlaces.append(document.createTextNode(e + " е на " + (arr.indexOf(e) + 1) + " място"));
 	});
@@ -112,7 +123,10 @@ let printWinners = (arr) => {
 let findWinner = () => {
 
 	while (dynamicNameList.length != 1){
-		displayResults.append(document.createTextNode("Рунд " + roundCounter))
+		let roundParagraph = document.createElement("p");
+		roundParagraph.append(document.createTextNode("Рунд " + roundCounter))
+		displayResults.append(roundParagraph);
+
 
 		if(rpsResults.includes(1) && rpsResults.includes(2) && rpsResults.includes(3)){
 			for (let i = 0; i < rpsDynamicNumber; i++){
@@ -144,8 +158,7 @@ let findWinner = () => {
 	}
 
 	if(dynamicNameList.length === 1){
-		console.log(dynamicNameList[0] + " печели")
-		displayResults.append(document.createTextNode(dynamicNameList[0] + " печели"));
+		domBuilder(dynamicNameList[0] + " печели", "winning-player", "winner", displayResults);
 		rpsResults = [];		
 	}
 }
@@ -162,6 +175,7 @@ rps.onclick = () => {
 
 	while(displayResults.firstChild){
 		displayResults.removeChild(displayResults.firstChild);
+		continueGame.remove();
 	}
 
 	rpsNumber();
@@ -178,13 +192,13 @@ rps.onclick = () => {
 
 	//Submmit and save names to array
 
-	let submitNames = document.getElementById('submitName');
+	let submitNames = document.getElementById('submit-name');
 	submitNames.onclick = () => {
 		roundCounter = 1;
 		displayResults.innerHTML = '';
 		dynamicNameList = [];
 		for(let i = 0; i < rpsSavedNumber; i++){
-			savedName = document.getElementById("playerName" + i).value;
+			savedName = document.getElementById("player-name" + i).value;
 			dynamicNameList.push(savedName);
 		}
 		continueGame.classList.toggle('hidden');
@@ -204,11 +218,6 @@ rps.onclick = () => {
 		rpsWinners = [];
 	
 		continueGame.onclick = () => {
-
-			// if(losersArray.length == 1){
-			// 	rpsWinners.push(losersArray[0]);
-			// 	console.log(rpsWinners);
-			// }
 
 			while(displayResults.firstChild){
 				displayResults.removeChild(displayResults.firstChild);
